@@ -1,0 +1,179 @@
+html {
+  	height: 100%;
+  	width: 100%;
+	background-color: #fffff5;
+	transition: color 1s, background-color 1s;
+	overflow: hidden;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+span {
+	font-size: 20px;
+}
+
+b {
+	font-size: 20px;
+}
+button{
+	color: black;
+	width: 140px;
+	background-color: rgb(77, 234, 124);
+	border: 3px dotted black;
+  	font-size: 15px;
+	text-shadow: 2px 2px 2px rgba(0,0,0,0);
+	transition: width 0.5s ease, color 0.3s, background-color 0.3s, text-shadow 0.1s;
+}
+button:hover{
+	background-color: rgb(78, 202, 115);
+	color: white;
+	width: 165px;
+	text-shadow: 2px 2px 2px rgb(0,0,0);
+	
+}
+#mobile_tap_zone {
+	position: relative;
+	width: 100%;
+	height: 70px;
+	background-color: rgb(77, 234, 124);
+	border: 3px dotted black;
+  	font-size: 15px;
+	text-shadow: 2px 2px 2px rgba(0,0,0,0);
+	transition: color 0.1s, background-color 0.1s, text-shadow 0.1s;
+}
+#mobile_tap_zone:active{
+	background-color: rgb(78, 202, 115);
+	color: white;
+	text-shadow: 2px 2px 2px rgb(0,0,0);
+}
+
+#dmdeco {
+	width: 140px;
+	position: absolute;
+	top: 12px;
+	right: 15px;
+	cursor: pointer;
+	transition: right 0.7s ease;
+}
+
+#cloud_cutoff {
+	transition: background-color 1s;
+}
+
+
+#moon_shadow {
+	cursor: pointer;
+	/*display: none;*/
+	width: 25px;
+	height: 25px;
+	z-index: 9;
+	position: absolute;
+	top: 25px;
+	float: right;
+	right: 20px;
+	font-size: 15px;
+	background-color: #1fb4ff;
+	border-radius: 30px;
+	transition: background-color 0.4s;
+}
+
+#right_cloud {
+	transition: right 1s;
+}
+
+.img_label {
+	height: 25px;
+}
+
+#modelabel {
+	cursor: pointer;
+	text-shadow: 2px 4px 4px rgb(0,0,0);
+	transition: right 0.4s, text-shadow 0.4s;
+}
+
+#hider_button {
+	width:100%;
+	height: 24px;
+	text-align: center;
+	background-color: rgb(77, 234, 124);
+	color: black;
+	border: 3px dotted black;
+  	font-size: 20px;
+	text-shadow: 2px 2px 2px rgba(0,0,0,0);
+	transition: color 0.3s, background-color 0.3s, text-shadow 0.1s;
+}
+
+#hider_button:hover {
+	background-color: rgb(78, 202, 115);
+	color: white;
+	text-shadow: 2px 2px 2px rgb(0,0,0);
+}
+
+
+/* Slider toggle modified from code from W3 schools (thankyou W3 schools!!!) */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 140px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1fb4ff;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background: #f5f519;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+
+input:checked + .slider {
+  background-color: #100439;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #100439;
+}
+
+input:checked + .slider:before {
+	background: #ededed;
+	content: "";
+  -webkit-transform: translateX(105px);
+  -ms-transform: translateX(105px);
+  transform: translateX(105px);
+}
+
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

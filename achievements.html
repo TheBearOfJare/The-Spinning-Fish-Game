@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width">
+  	<title>Achievments - The Spinning Fish Game</title>
+  	<link href="achiv.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/x-icon" href="sprites/fish.ico">
+</head>
+
+	<body>
+		<h1>
+			Achievements
+		</h1>
+		<p>
+			Currently in beta. More Coming Soon!
+		</p>
+		<h2>
+			Completed:
+		</h2>
+		<div class="achievement" id="dogooder" style="display: none;">
+			<b>Do-gooder:</b> Get your first 100 "good's" <span style="float: right; margin-right: 10px;">500 points</span>
+		</div>
+
+		<div class="achievement" id="Grand" style="display: none;">
+			<b>Grand:</b> Score your first 1000 points <img src="sprites/grand_img.png" style="float: right; margin-right: 10px; height:40px;">
+		</div>
+
+		<div class="achievement" id="I guess I never miss" style="display: none;">
+			<b>I guess I never miss:</b> Don't miss 25 times in a row <span style="float: right; margin-right: 10px;">1000 points</span>
+		</div>
+
+		<div class="achievement" id="I guess I never hit" style="display: none;">
+			<b>I guess I never hit:</b> Miss 250 times <span style="float: right; margin-right: 10px;">11250 points (refunds all points lost due to missing)</span>
+		</div>
+
+		<div class="achievement" id="Perfectionist" style="display: none;">
+			<b>Perfectionist:</b> Be "perfect" 150 times <span style="float: right; margin-right: 10px;">5000 points</span>
+		</div>
+		
+		<div class="achievement" id="Mr/Miss Marvelous" style="display: none;">
+			<b>Mr/Miss Marvelous:</b> Hit the frame-perfect timing 10 times <span style="float: right; margin-right: 10px;">10000 points</span>
+		</div>
+		
+		<h2>
+			In Progress:
+		</h2>
+	
+		<h2>
+			Mystery:
+		</h2>
+		<div id="mystery_achievements">
+			There are <span id="undiscovered_acheivement_number">0</span> mystery acheivements left for you to discover. <button id="toggle_mystery" onclick="show_mystery_explanation();">Learn more</button>
+
+			<div id="mystery_explanation" style="display: none;">
+				<br>
+				Mystery Achievements won't be revealed until you progress in them. Some of them are easer eggs, while others will be revealed when you complete other acheivements.
+			</div>
+		
+		</div>
+		<br>
+	
+		<button style="position: sticky; top: 5; right: 5;" onclick="window.location.assign('index.html')">Go back to the game</button>
+		
+	</body>
+	
+	<script src="achiv.js"></script>
+	
+</html>

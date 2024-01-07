@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html id="html">
+
+<script src="game.js" onload="//if (is_ios()) {adjust_for_ios()};"></script>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Play the Spinning Fish Game</title>
+	<link href="game.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/x-icon" href="sprites/fish.ico">
+	<meta name="thumbnail" content="sprites/transparent_fish.gif" />
+	<meta name="department" content="online gaming" />
+	<meta name="audience" content="all" />
+	<meta name="keywords" content="gaming,play,online,free,rhythm,meme">
+	<meta name='description'
+		content="Play the spinning fish game - a fun rythm game where you click or press the space bar in time with the rotation of a fish onscreen. Score points, unlock achievements, and climb the leaderboard in this simple but addicting game inspired by the hit youtube video." />
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7824971111245419"
+		crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+	<meta property="og:image" content="https://media.tenor.com/R5IECfIf34YAAAAd/fish-spinning.gif" />
+</head>
+
+<body onload="loadthings()">
+	<div id="measuring stick">
+		<img id="fish" src="sprites/fishfirstframe_transparent.png"
+			style="position: absolute; display: none; width: 65%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
+			onload="const d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);">
+
+		<div style="position: relative; top: 5px;">
+			<img class="img_label" src="sprites/miss.png"><b>:</b> <span id="miss">0</span><br>
+			<img class="img_label" src="sprites/good.png"><b>:</b> <span id="good">0</span><br>
+			<img class="img_label" src="sprites/great.png"><b>:</b> <span id="great">0</span><br>
+			<img class="img_label" src="sprites/perfect.png"><b>:</b> <span id="perfect">0</span><br>
+			<img class="img_label" src="sprites/marvelous.png"><b>:</b> <span id="marvelous">0</span><br>
+
+			Total score: <span id="score">0</span> <br>
+			<!--Global Rank: <span id="rank">0</span> (not accurate rn)<br>-->
+
+		</div>
+
+		<span id="version"
+			style="position: absolute; z-index: 12; top: 5px; float: right; right: 10px; font-size: 15px;">Beta Version
+			0.9.8</span>
+		<div title="Toggle dark mode" id="dmdeco"
+			onclick="window.navigator.vibrate([5]); let x = document.getElementById('darkmode'); x.checked = !x.checked; togglenight(); this.blur();">
+			<div id="cloud_cutoff"
+				style="width: 40px; height: 11px; z-index: 11; background-color: white; position: inherit; float: right; right: 33px; font-size: 15px;">
+			</div>
+			<img src="sprites/cloud.webp"
+				style="width: 40px; z-index: 10; position: inherit; top: 16px; float: right; right: 76px; font-size: 15px;">
+			<img id="right_cloud" src="sprites/cloud.webp"
+				style="width: 50px; z-index: 10; position: inherit; top: 3px; float: right; right: 24px; font-size: 15px;">
+
+		</div>
+		<div id="moon_shadow"
+			onclick="window.navigator.vibrate([5]); let x = document.getElementById('darkmode'); x.checked = !x.checked; togglenight(); this.blur();">
+			<br></div>
+		<label title="Toggle dark mode" class="switch"
+			style="position: absolute; top: 23px; float: right; right: 10px; font-size: 15px;">
+
+			<input id="darkmode" type="checkbox" onclick="window.navigator.vibrate([5]); this.blur();"
+				onchange="togglenight()">
+
+			<span class="slider round"></span>
+
+			<div id='modelabel' style="z-index: 20; position:absolute; right: 10px;">Lightmode</div>
+		</label><br>
+		<div class="menu"
+			style="position: absolute; top: 56px; float: right; right: 10px; overflow:hidden; width:270px;">
+
+			<button style="float: right;"
+				onclick="window.navigator.vibrate([5]); window.location.assign('achievements.html')">Achievements</button><br>
+			<button style="float: right; margin-top: -2px;" id='mute'
+				onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; } else {song.muted = true; this.innerHTML = 'Unmute Audio'; } ">Mute
+				Audio</button><br>
+			<audio id="funkytown music" paused>
+				<source src="Funky trim.mp3" type="audio/mpeg">
+			</audio>
+
+
+			<img id="mobilequality" src="sprites/transparent_fish.gif"
+				style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 3px; width:140px; ">
+
+		</div>
+
+		<div style="width:100%;">
+
+			<img id="mobilefish" src="sprites/fishfirstframe_transparent.png"
+				style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200; pointer-events: none;"
+				onload="const d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);"
+				onclick="mobile_tap();">
+
+
+			<h2 id='instructions' style="display: none; width: 20%;">
+				Press the spacebar when the fish faces you.
+			</h2>
+			<h2 id="mobileinstructions" style="display: none;">
+				Tap the Tap Zone™ or the fish when it faces you.
+			</h2>
+			<span>Your Accuracy:</span> <b><span id="accuracy"></span></b>
+
+
+
+		</div>
+	</div>
+	<button id="mobile_tap_zone" onclick="mobile_tap();" style="display: none;">
+		<span>Tap Zone™</span>
+	</button>
+
+
+	<br>
+	<img id="quality" src="sprites/miss.png"
+		style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 10px; width:30%; max-height: 10%; overflow: hidden;">
+	<div><br></div>
+
+	<div id="bottom_thingy"
+		style="position: absolute; float:bottom; background: yellow; color: black; font-size: 20px; width: 100%; left: 0px; bottom:0px;">
+
+		<div id="hider_button" onclick="
+			
+		tmp = new Date();
+
+		tmp = tmp.getTime()
+		console.log('tmp: ',tmp)
+		while (true) {
+			x = new Date();
+			x = x.getTime();
+			console.log(x,tmp)
+			if (x > tmp + 10) {
+				document.getElementById('bottom_thingy').style.display = 'none';
+				break
+			}
+			continue
+		}
+		if (mobileprefix == 'mobile') {
+			document.getElementById('mobilefish').style.width = '100%'
+			document.getElementById('mobilefish').style.height = '50%'
+			zone = document.getElementById('mobile_tap_zone')
+			zone.style.height = `${document.getElementById('html').clientHeight - document.getElementById('measuring stick').clientHeight - 10}px`;
+			x = zone.style.height.split('')
+			x.pop()
+			x.pop()
+			x = parseInt(x.join(''))
+			zone.style.height = `${x - document.getElementById('bottom_thingy').clientHeight}px`;
+			
+		}
+		else {
+			document.getElementById('fish').style.top = '10%';
+		}
+		
+		
+
+			
+			
+			
+			">Hide Ads
+
+		</div>
+		<div style="left:10px; right:10px;">
+			To report a bug or submit general feedback, fill out <a href="https://forms.gle/5rvXZQoFKcfviXFY7">this
+				form</a>.
+			To veiw the original meme that inspired this, <a href="https://www.youtube.com/watch?v=6ov7LXBJy4g">click
+				here</a>.
+		</div>
+
+
+		<div id="mobilead">
+			<ins class="adsbygoogle" id="mobile_ad_data"
+				style="display:inline-block;width:50%;height:60px;float:bottom;bottom:0px;"
+				data-ad-client="ca-pub-7824971111245419" data-ad-slot="6951862405">
+			</ins>
+			<ins class="adsbygoogle" style="display:inline-block;width:50%;height:60px;float:left;bottom:0px;"
+				data-ad-client="ca-pub-7824971111245419" data-ad-slot="5001508958">
+			</ins>
+
+		</div>
+		<!--
+		<div id="desktopads">
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:50%;height:90px;float:bottom;bottom:0px;"
+			     data-ad-client="ca-pub-7824971111245419"
+			     data-ad-slot="9084692415">
+			</ins>
+			
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:50%;height:90px;float:left;bottom:0px;"
+			     data-ad-client="ca-pub-7824971111245419"
+			     data-ad-slot="2790221110">
+			</ins>
+			
+			
+			
+		</div>
+		-->
+	</div>
+
+	<script async>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</body>
+
+</html>
