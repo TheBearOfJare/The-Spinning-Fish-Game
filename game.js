@@ -63,6 +63,7 @@ togglenight = function() {
 		b.innerHTML = "Darkmode";
 		b.style.right = "60px";
 		b.style.textShadow = "2px -2px 4px rgb(0,0,0)";
+		document.cookie = `darkmode=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`
 	}
 	else {
 		x.style.backgroundColor = "#1fb4ff";
@@ -74,6 +75,7 @@ togglenight = function() {
 		b.innerHTML = "Lightmode";
 		b.style.right = "10px";
 		b.style.textShadow = "2px 4px 4px rgb(0,0,0)";
+		document.cookie = `darkmode=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`
 	}
 }
 
@@ -416,6 +418,9 @@ loadthings = function() {
 	else {
 		console.log('cookies: '+document.cookie)
 		update_stats()
+		if (get_cookie('darkmode' == true)) {
+			togglenight()
+		}
 	
 	}
 	
@@ -461,33 +466,6 @@ loadthings = function() {
 	document.getElementById(mobileprefix+'fish').src = 'sprites/transparent_fish.gif';
 
 	setup();
-	
-
-	
-	var data = null;
-	var xhr = new XMLHttpRequest();
-	xhr.withCredentials = false;
-	
-	xhr.addEventListener("readystatechange", function () {
-		if (this.readyState === 4) {
-
-			if (this.responseText.length === 0) {
-				document.getElementById('rank').innerHTML = 'unavailable'
-			}
-			else {
-				userdata = JSON.parse(this.responseText)
-			}
-			//console.log('userdata: '+userdata)
-
-		}
-	});
-	
-	xhr.open("GET", "https://spinningfishgame-3028.restdb.io/rest/Userdata");
-	xhr.setRequestHeader("content-type", "application/json");
-	xhr.setRequestHeader("x-apikey", xapikey);
-	xhr.setRequestHeader("cache-control", "no-cache");
-	
-	xhr.send(data);
 	
 	console.log('it worked?');
 
