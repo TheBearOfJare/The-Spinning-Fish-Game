@@ -395,7 +395,7 @@ loadthings = function() {
 		console.log('cookies: '+document.cookie)
 		update_stats()
 		if (get_cookie('darkmode')==true) {
-			togglenight()
+			document.getElementById("dmdeco").()
 		}
 	
 	}
