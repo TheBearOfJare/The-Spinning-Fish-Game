@@ -166,44 +166,13 @@ setup = function() {
 	
 	//console.log('starting music')
 	//funky()
-	setInterval(funky,((7*60*1000)+(43.07*1000)))
 	
-	gamestarted = true;
 
 	
 }
 
 
-upload_stats = function(miss,good,great,perfect,marvelous,score) {
-	if (document.cookie.search('dbid') < 0 ) {
-		//create_db_entry();
-	}
-	var data = JSON.stringify({
-	  	"miss": miss,
-		"good": good,
-		"great": great,
-		"perfect": perfect,
-		"marvelous": marvelous,
-		"score": score,
-	});
-	
-	var xhr = new XMLHttpRequest();
-	xhr.withCredentials = false;
-	
-	xhr.addEventListener("readystatechange", function () {
-	  if (this.readyState === 4) {
-		  console.log('stats uploaded')
-		  
-	  }
-	});
-	
-	xhr.open("PUT", `https://spinningfishgame-3028.restdb.io/rest/userdata/${dbid}`);
-	xhr.setRequestHeader("content-type", "application/json");
-	xhr.setRequestHeader("x-apikey", xapikey);
-	xhr.setRequestHeader("cache-control", "no-cache");
-	
-	xhr.send(data);
-}
+
 
 save_stats = function (miss,good,great,perfect,marvelous,score) {
 	document.cookie = `score=${score}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`
@@ -277,6 +246,10 @@ register_press = function(time) {
 
 	if (document.getElementById('funkytown music').paused) {
 		document.getElementById('funkytown music').play();
+		setInterval(funky,((7*60*1000)+(43.07*1000)))
+	
+		
+
 	}
 }
 
@@ -418,7 +391,7 @@ loadthings = function() {
 	else {
 		console.log('cookies: '+document.cookie)
 		update_stats()
-		if (get_cookie('darkmode' == true)) {
+		if (get_cookie('darkmode')=true) {
 			togglenight()
 		}
 	
@@ -465,7 +438,7 @@ loadthings = function() {
 
 	document.getElementById(mobileprefix+'fish').src = 'sprites/transparent_fish.gif';
 
-	setup();
+	gamestarted = true;
 	
 	console.log('it worked?');
 
