@@ -11,6 +11,9 @@ var userdata = []
 var playerdata
 var xapikey = "646b64370b60fc42f4e1993a"
 
+
+ upload_stats = function (miss, good, great, perfect,marvelous) {}
+
 /*
 document.addEventListener('visibilitychange', function() {
 
