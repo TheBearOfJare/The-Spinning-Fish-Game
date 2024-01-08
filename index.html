@@ -77,10 +77,10 @@
 				onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; document.cookie = `muted=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} else {song.muted = true; this.innerHTML = 'Unmute Audio'; document.cookie = `muted=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} ">Mute
 				Audio</button><br>
 			<button style="float: right; margin-top: -2px;" id='reset timing'
-				onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/transparent_fish.gif'; document.getElementById('fish').src='sprites/transparent_fish.gif'; ">Reset Fish&Timing
+				onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/transparent_fish.gif'; document.getElementById('fish').src='sprites/transparent_fish.gif'; ">Reset Timing
 			</button><br>
-			<input id="timing adjuster" style="float: right; margin-top: -2px;" type="range" min="-60" max="60" value="0" oninput="document.getElementById('timing adjustment value').innerHTML = `Timing Adjustment: ${this.value}ms`">
-			<span id="timing adjustment value">Timing Adjustment: 0ms</span>
+			<input id="timing adjuster" style="float: right;" type="range" min="-60" max="60" value="0" oninput="document.getElementById('timing adjustment value').innerHTML = `Timing Adjustment: ${this.value}ms`"><br>
+			<span id="timing adjustment value" style="float: right;">Timing Adjustment: 0ms</span>
 			<audio id="funkytown music" paused>
 				<source src="Funky trim.mp3" type="audio/mpeg">
 			</audio>
