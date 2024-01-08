@@ -366,6 +366,8 @@ loadthings = function() {
 	else {
 		//console.log('cookies: '+document.cookie)
 		update_stats()
+
+		if (get_cookie('darkmode') == 'true') {document.getElementById('dmdeco').click()};
 	
 	}
 	
