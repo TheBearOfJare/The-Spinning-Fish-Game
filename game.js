@@ -1,7 +1,7 @@
 duration = 1.05*1000
 const d = new Date();
 timing = d.getTime()+200;
-console.log('original: '+timing)
+//console.log('original: '+timing)
 
 var mobileprefix = ''
 var gamestarted = false
@@ -87,7 +87,7 @@ set_time = function(ms) {
 	if (window.mobileAndTabletCheck() == false) {
 		timing+=40;
 	}
-	console.log('new: ' + timing)
+	//console.log('new: ' + timing)
 }
 
 function get_cookie(name) {
@@ -100,9 +100,9 @@ funky = function () {
 	var song = document.getElementById('funkytown music');
 	
 	if (document.getElementById('mute').innerHTML == 'Unmute Audio') {
-		console.log('muting?')
+		//console.log('muting?')
 		song.muted = true;
-		console.log('muted?')
+		//console.log('muted?')
 	}
 	else {
 		song.muted = false;
@@ -119,9 +119,9 @@ calc_score = function(miss, good, great, perfect, marvelous) {
 	return (marvelous*1000) + (perfect*100) + (great*50) + (good*15) - (miss*45)
 }
 update_visits = function() {
-	console.log('updating visits')
+	//console.log('updating visits')
 	visits = get_cookie('visits')
-	console.log(visits)
+	//console.log(visits)
 	try {
 		visits = parseInt(visits) + 1
 		document.cookie = `visits=${visits};`
@@ -161,7 +161,7 @@ adjust_for_ios = function() {
 	x.pop()
 	x.pop()
 	x = parseInt(x.join(''))
-	console.log(x)
+	//console.log(x)
 	document.getElementById('mobilefish').style.height = `${x*0.9}px`;
 }
 
@@ -308,12 +308,12 @@ create_db_entry = function() {
 get_rank = function(score) {
 	rank = 1
 	for (i = 0, i<userdata.length; i++;) {
-		console.log("score: "+userdata[i]['score'])
+		//console.log("score: "+userdata[i]['score'])
 		if (userdata[i]['score'] > score) {
 			rank+=1
 		}
 	}
-	console.log('rank: '+rank)
+	//console.log('rank: '+rank)
 	return rank
 }
 
@@ -357,18 +357,15 @@ update_stats = function () {
 
 loadthings = function() {
 	
-	console.log('onload')
+	//console.log('onload')
 	
 	if (document.cookie.length === 0) {
 		setup_account()
 		
 	}
 	else {
-		console.log('cookies: '+document.cookie)
+		//console.log('cookies: '+document.cookie)
 		update_stats()
-		if (get_cookie('darkmode')=='true') {
-			document.getElementById("dmdeco").click()
-		}
 	
 	}
 	
@@ -415,6 +412,6 @@ loadthings = function() {
 
 	gamestarted = true;
 	
-	console.log('it worked?');
+	//console.log('it worked?');
 
 }
