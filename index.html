@@ -43,7 +43,7 @@
 
 		<span id="version"
 			style="position: absolute; z-index: 12; top: 5px; float: right; right: 10px; font-size: 15px;">Beta Version
-			0.9.8.6</span>
+			0.9.8.7</span>
 		<div title="Toggle dark mode" id="dmdeco"
 			onclick="window.navigator.vibrate([5]); let x = document.getElementById('darkmode'); x.checked = !x.checked; togglenight(); this.blur();">
 			<div id="cloud_cutoff"
@@ -76,6 +76,11 @@
 			<button style="float: right; margin-top: -2px;" id='mute'
 				onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; document.cookie = `muted=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} else {song.muted = true; this.innerHTML = 'Unmute Audio'; document.cookie = `muted=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} ">Mute
 				Audio</button><br>
+			<button style="float: right; margin-top: -2px;" id='reset timing'
+				onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/transparent_fish.gif'; document.getElementById('fish').src='sprites/transparent_fish.gif'; ">Reset Fish&Timing
+			</button><br>
+			<input id="timing adjuster" style="float: right; margin-top: -2px;" type="range" min="-60" max="60" value="0" oninput="document.getElementById('timing adjustment value').innerHTML = `Timing Adjustment: ${this.value}ms`">
+			<span id="timing adjustment value">Timing Adjustment: 0ms</span>
 			<audio id="funkytown music" paused>
 				<source src="Funky trim.mp3" type="audio/mpeg">
 			</audio>
@@ -133,8 +138,8 @@
 			continue
 		}
 		if (mobileprefix == 'mobile') {
-			document.getElementById('mobilefish').style.width = '100%'
-			document.getElementById('mobilefish').style.height = '50%'
+			document.getElementById('mobilefish').style.width = '100%';
+			document.getElementById('mobilefish').style.height = '50%';
 			zone = document.getElementById('mobile_tap_zone')
 			zone.style.height = `${document.getElementById('html').clientHeight - document.getElementById('measuring stick').clientHeight - 10}px`;
 			x = zone.style.height.split('')
