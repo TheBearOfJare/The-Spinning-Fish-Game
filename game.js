@@ -194,7 +194,7 @@ register_press = function(time) {
 	else {
 		lastpressed = time
 	}
-	adjustment = document.getElementById("timing adjuster").value
+	adjustment = parseInt(`${document.getElementById("timing adjuster").value}`)
 	//accounts for early and late respectively
 	innacuracy = Math.min(duration-((time+adjustment)%duration), (time+adjustment)%duration)
 	if (innacuracy === (time+adjustment)%duration) {
