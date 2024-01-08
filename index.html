@@ -27,7 +27,7 @@
 	<div id="measuring stick">
 		<img id="fish" src="sprites/fishfirstframe_transparent.png"
 			style="position: absolute; display: none; width: 65%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
-			onload="const d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);">
+			onload="d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);">
 
 		<div style="position: relative; top: 5px;">
 			<img class="img_label" src="sprites/miss.png"><b>:</b> <span id="miss">0</span><br>
@@ -93,7 +93,7 @@
 
 		<div style="width:100%;">
 
-			<img id="mobilefish" src="sprites/fishfirstframe_transparent.png" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="const d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();">
+			<img id="mobilefish" src="sprites/fishfirstframe_transparent.png" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();">
 
 
 			<h2 id='instructions' style="display: none; width: 20%;">

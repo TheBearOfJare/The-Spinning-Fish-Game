@@ -1,5 +1,5 @@
 duration = 1.05*1000
-const d = new Date();
+d = new Date();
 timing = d.getTime()+200;
 //console.log('original: '+timing)
 
@@ -262,7 +262,7 @@ document.onkeypress = function (e) {
     e = e || window.event;
     //console.log(e.keyCode)
 	if (e.keyCode === 32 && gamestarted === true) {
-		const d = new Date();
+		d = new Date();
 		time = d.getTime();
 		time-=timing
 		register_press(time)
@@ -272,7 +272,7 @@ document.onkeypress = function (e) {
 mobile_tap = function() {
 	
 	
-	const d = new Date();
+	d = new Date();
 	time = d.getTime();
 	time-=timing
 
