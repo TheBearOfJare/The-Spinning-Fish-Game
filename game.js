@@ -368,6 +368,7 @@ loadthings = function() {
 		update_stats()
 
 		if (get_cookie('darkmode') == 'true') {document.getElementById('dmdeco').click();}
+		if (get_cookie('muted') == 'true') {document.getElementById('mute').click();}
 	
 	}
 	

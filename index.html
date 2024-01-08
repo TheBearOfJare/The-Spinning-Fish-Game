@@ -74,7 +74,7 @@
 			<button style="float: right;"
 				onclick="window.navigator.vibrate([5]); window.location.assign('achievements.html')">Achievements</button><br>
 			<button style="float: right; margin-top: -2px;" id='mute'
-				onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; } else {song.muted = true; this.innerHTML = 'Unmute Audio'; } ">Mute
+				onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; document.cookie = `muted=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} else {song.muted = true; this.innerHTML = 'Unmute Audio'; document.cookie = `muted=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} ">Mute
 				Audio</button><br>
 			<audio id="funkytown music" paused>
 				<source src="Funky trim.mp3" type="audio/mpeg">
