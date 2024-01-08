@@ -300,37 +300,9 @@ setup_account = function() {
 }
 
 create_db_entry = function() {
-	var data = JSON.stringify({
-	  	"miss": "0",
-		"good": "0",
-		"great": "0",
-		"perfect": "0",
-		"marvelous": "0",
-		"score": "0",
-		"visits": "1"
-	});
-	
-	var xhr = new XMLHttpRequest();
-	xhr.withCredentials = false;
-	
-	xhr.addEventListener("readystatechange", function () {
-	  	if (this.readyState === 4) {
-			
-	    	output = JSON.parse(this.responseText);
-			console.log("newplayer output: "+ output)
-			dbid = output["_id"]
-			console.log("dbid: "+dbid)
-			document.cookie = `dbid=${dbid}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`
 
-	  	}	
-	});
-	
-	xhr.open("POST", "https://spinningfishgame-3028.restdb.io/rest/userdata");
-	xhr.setRequestHeader("content-type", "application/json");
-	xhr.setRequestHeader("x-apikey", xapikey);
-	xhr.setRequestHeader("cache-control", "no-cache");
-	
-	xhr.send(data);
+	// Creates a blank new database entry for the player's save data. This will used mainly for leaderboard purposes
+
 }
 
 get_rank = function(score) {
