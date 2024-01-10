@@ -257,6 +257,8 @@ register_press = function(time) {
 	}
 }
 
+// depreciated implementation (uses onkeypress)
+/*
 document.onkeypress = function (e) {
 	//console.log('key pressed')
     e = e || window.event;
@@ -268,6 +270,15 @@ document.onkeypress = function (e) {
 		register_press(time)
 	}
 };
+*/
+// new implementation should theoretically work identically just with keydown instaid.
+document.addEventListener('keydown', function (e) {
+    //console.log('key pressed')
+    if (e.key === ' ' && gamestarted === true) {
+        const time = Date.now() - timing;
+        register_press(time);
+    }
+});
 
 mobile_tap = function() {
 	
