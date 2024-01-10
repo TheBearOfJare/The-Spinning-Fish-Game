@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@replit/database": "^2.0.3",
-    "browserify": "^17.0.0",
-    "node-fetch": "^3.3.1"
-  }
-}
