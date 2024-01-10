@@ -9,7 +9,7 @@
 	<title>Play the Spinning Fish Game</title>
 	<link href="game.css" rel="stylesheet" type="text/css" />
 	<link rel="icon" type="image/x-icon" href="sprites/fish.ico">
-	<meta name="thumbnail" content="sprites/transparent_fish.gif" />
+	<meta name="thumbnail" content="sprites/spinning_fish_transparent.gif" />
 	<meta name="department" content="online gaming" />
 	<meta name="audience" content="all" />
 	<meta name="keywords" content="gaming,play,online,free,rhythm,meme">
@@ -77,7 +77,7 @@
 				onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; document.cookie = `muted=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} else {song.muted = true; this.innerHTML = 'Unmute Audio'; document.cookie = `muted=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} ">Mute
 				Audio</button><br>
 			<button style="float: right; margin-top: -2px;" id='reset timing'
-				onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/transparent_fish.gif'; document.getElementById('fish').src='sprites/transparent_fish.gif'; ">Reset Timing
+				onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/spinning_fish_transparent.gif'; document.getElementById('fish').src='sprites/spinning_fish_transparent.gif'; ">Reset Timing
 			</button><br>
 			<input id="timing adjuster" style="float: right;" type="range" min="-60" max="60" value="0" oninput="document.getElementById('timing adjustment value').innerHTML = `Timing Adjustment: ${this.value}ms`"><br>
 			<span id="timing adjustment value" style="float: right;">Timing Adjustment: 0ms</span>
@@ -86,7 +86,7 @@
 			</audio>
 
 
-			<img id="mobilequality" src="sprites/transparent_fish.gif"
+			<img id="mobilequality" src="sprites/spinning_fish_transparent.gif"
 				style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 3px; width:140px; ">
 
 		</div>
