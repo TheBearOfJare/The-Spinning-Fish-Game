@@ -48,10 +48,12 @@ button:hover{
 
 .rainbow_text {
 	color: red;
+	/*
 	text-shadow: 1px 1px 0 black,
     -1px 1px 0 black,
     -1px -1px 0 black,
     1px -1px 0 black;
+	*/
 	transition: color 1.05s ease-in-out;
 }
 
