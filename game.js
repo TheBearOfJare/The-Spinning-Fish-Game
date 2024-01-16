@@ -120,9 +120,9 @@ calc_score = function(miss, good, great, perfect, marvelous) {
 }
 update_visits = function() {
 	//console.log('updating visits')
-	visits = get_cookie('visits')
 	//console.log(visits)
 	try {
+		visits = get_cookie('visits')
 		visits = parseInt(visits) + 1
 		document.cookie = `visits=${visits};`
 	}
