@@ -47,11 +47,11 @@ button:hover{
 }
 
 .rainbow_text {
-	text-shadow: 3px 3px 2px red,
-    -3px 3px 2px red,
-    -3px -3px 0 red,
-    3px -3px 0 red;
-	transition: text-shadow 1.05s ease-in-out;
+	text-shadow: 2px 2px 0 black,
+    -2px 2px 0 black,
+    -2px -2px 0 black,
+    2px -2px 0 black;
+	transition: color 1.05s ease-in-out;
 }
 
 #dmdeco {
