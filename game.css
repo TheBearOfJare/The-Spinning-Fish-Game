@@ -47,9 +47,11 @@ button:hover{
 }
 
 .rainbow_text {
-	-webkit-text-stroke-width: 3px;
-  	-webkit-text-stroke-color:rgb(255, 0, 0)k;
-	transition: -webkit-text-stroke-color 1.05s ease-in-out;
+	text-shadow: 3px 3px 2px red,
+    -3px 3px 2px red,
+    -3px -3px 0 red,
+    3px -3px 0 red;
+	transition: text-shadow 1.05s ease-in-out;
 }
 
 #dmdeco {
