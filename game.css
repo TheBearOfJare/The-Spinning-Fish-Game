@@ -46,6 +46,12 @@ button:hover{
 	text-shadow: 2px 2px 2px rgb(0,0,0);
 }
 
+.rainbow_text {
+	-webkit-text-stroke-width: 3px;
+  	-webkit-text-stroke-color:rgb(255, 0, 0)k;
+	transition: -webkit-text-stroke-color 1.05s ease-in-out;
+}
+
 #dmdeco {
 	width: 140px;
 	position: absolute;
