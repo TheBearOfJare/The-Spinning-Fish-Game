@@ -96,15 +96,10 @@
 			<img id="mobilefish" src="sprites/spinning_fish_transparent.gif" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();">
 
 
-			<h2 id='instructions' class="rainbow_text" style="display: none; width: 20%;" onload="
-			setInterval(rainbow_effect(),1);
-			
-			colors = ['red','orange','yellow','green','blue','purple']
-			this.style.color = colors[Math.round(Math.random()*6)];
-			">
+			<h2 id='instructions' style="display: none; width: 20%;">
 				Press the spacebar when the fish faces you.
 			</h2>
-			<h2 id="mobileinstructions" class="rainbow_text" style="display: none;">
+			<h2 id="mobileinstructions" style="display: none;">
 				Tap the Tap Zone™ or the fish when it faces you.
 			</h2>
 			<span>Your Accuracy:</span> <b><span id="accuracy"></span></b>
