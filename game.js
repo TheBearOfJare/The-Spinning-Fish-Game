@@ -174,7 +174,15 @@ setup = function() {
 	
 }
 
+pulse = function(intensity) {
+	var pulse_reset = Date.now() + 300
+	document.getElementById('html').style.margin = intensity;
+	while(Date.now() < pulse_reset) {
+		continue
+	}
+	document.getElementById('html').style.margin = '0px';
 
+}
 
 
 save_stats = function (miss,good,great,perfect,marvelous,score) {
@@ -223,9 +231,12 @@ register_press = function(time) {
 	}
 	if (innacuracy <= 10) {
 		quality = 'perfect'
+		pulse(10)
+		
 	}
 	if (innacuracy === 0){
 		quality = 'marvelous'
+		pulse(20)
 	}
 
 	

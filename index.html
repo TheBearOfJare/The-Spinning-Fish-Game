@@ -96,7 +96,11 @@
 			<img id="mobilefish" src="sprites/fishfirstframe_transparent.png" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="d = new Date(); ms = d.getTime(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();">
 
 
-			<h2 id='instructions' class="rainbow_text" style="display: none; width: 20%;" onload="setInterval(rainbow_effect(),1);">
+			<h2 id='instructions' class="rainbow_text" style="display: none; width: 20%;" onload="//setInterval(rainbow_effect(),1);
+			
+			var colors = ['red','orange','yellow','green','blue','purple']
+			this.style.color = colors[Math.round(Math.random()*6)];
+			">
 				Press the spacebar when the fish faces you.
 			</h2>
 			<h2 id="mobileinstructions" class="rainbow_text" style="display: none;">

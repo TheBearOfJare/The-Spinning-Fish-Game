@@ -2,7 +2,7 @@ html {
   	height: 100%;
   	width: 100%;
 	background-color: #fffff5;
-	transition: color 1s, background-color 1s;
+	transition: color 1s, background-color 1s, margin 0.3s;
 	overflow: hidden;
 	font-family: 'Josefin Sans', sans-serif;
 }
