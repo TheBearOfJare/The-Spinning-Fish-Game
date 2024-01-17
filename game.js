@@ -269,8 +269,8 @@ register_press = function(time) {
 }
 
 rainbow_effect = function() {
-	var colors = ['red','orange','yellow','green','blue','purple']
-	var things = document.getElementsByClassName('rainbow_text');
+	colors = ['red','orange','yellow','green','blue','purple']
+	things = document.getElementsByClassName('rainbow_text');
 	for(i = 0; i < things.length; i++) {
 		things[i].style.color = colors[Math.round(Math.random()*6)];
 	}
