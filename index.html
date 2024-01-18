@@ -76,7 +76,7 @@
 			<button style="float: right; margin-top: -2px;" id='mute'
 				onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; document.cookie = `muted=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} else {song.muted = true; this.innerHTML = 'Unmute Audio'; document.cookie = `muted=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} ">Mute
 				Audio</button><br>
-			<button style="float: right; margin-top: -2px;" id='reset timing'
+			<button style="float: right; margin-top: -2px;" id='reset_timing'
 				onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/spinning_fish_transparent.gif'; document.getElementById('fish').src='sprites/spinning_fish_transparent.gif'; ">Reset Timing
 			</button><br>
 			<input id="timing adjuster" style="float: right;" type="range" min="-60" max="60" value="0" oninput="document.getElementById('timing adjustment value').innerHTML = `Timing Adjustment: ${this.value}ms`"><br>

@@ -85,7 +85,7 @@ togglenight = function() {
 set_time = function(ms) {
 	timing = ms
 	if (window.mobileAndTabletCheck() == false) {
-		timing+=40;
+		timing+=20;
 	}
 	//console.log('new: ' + timing)
 }
