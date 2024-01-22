@@ -1,6 +1,5 @@
 duration = 1.05*1000
-d = new Date();
-timing = d.getTime()+200;
+timing = Date.now()+200;
 //console.log('original: '+timing)
 
 var mobileprefix = ''
@@ -303,8 +302,7 @@ document.addEventListener('keydown', function (e) {
 mobile_tap = function() {
 	
 	
-	d = new Date();
-	time = d.getTime();
+	time = Date.now()
 	time-=timing
 
 	
