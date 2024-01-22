@@ -441,7 +441,7 @@ loadthings = function() {
 		//alert(document.getElementById('bottom_thingy').clientHeight)
 	}
 
-	document.getElementById(mobileprefix+'fish').src = 'sprites/spinning_fish_transparent.gif';
+	//document.getElementById(mobileprefix+'fish').src = 'sprites/spinning_fish_transparent.gif';
 
 	gamestarted = true;
 	
