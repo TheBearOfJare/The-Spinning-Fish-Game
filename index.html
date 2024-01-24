@@ -27,14 +27,13 @@
 	<div id="measuring stick">
 		<img id="fish" src="sprites/spinning_fish_meme_transparent.webp"
 			style="position: absolute; display: none; width: 65%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
-			onload="ms = Date.now() - 50; console.log('theoretically better timing: '+ms); set_time(ms);">
+			onload="ms = Date.now() - 50; console.log('theoretically better timing: '+ms); set_time(ms);" alt="An animated meme image of a spinning fish." >
 
 		<div style="position: relative; top: 5px;">
-			<img class="img_label" src="sprites/miss.png"><b>:</b> <span id="miss">0</span><br>
-			<img class="img_label" src="sprites/good.png"><b>:</b> <span id="good">0</span><br>
-			<img class="img_label" src="sprites/great.png"><b>:</b> <span id="great">0</span><br>
-			<img class="img_label" src="sprites/perfect.png"><b>:</b> <span id="perfect">0</span><br>
-			<img class="img_label" src="sprites/marvelous.png"><b>:</b> <span id="marvelous">0</span><br>
+			<img class="img_label" src="sprites/miss.png" alt="Stylized graphic of the word 'miss'"><b>:</b> <span id="miss">0</span><br>
+			<img class="img_label" src="sprites/great.png" alt="Stylized graphic of the word 'great'"><b>:</b> <span id="great">0</span><br>
+			<img class="img_label" src="sprites/perfect.png" alt="Stylized graphic of the word 'perfect'"><b>:</b> <span id="perfect">0</span><br>
+			<img class="img_label" src="sprites/marvelous.png" alt="Stylized graphic of the word 'marvelous'"><b>:</b> <span id="marvelous">0</span><br>
 
 			Total score: <span id="score">0</span> <br>
 			<!--Global Rank: <span id="rank">0</span> (not accurate rn)<br>-->
@@ -50,9 +49,9 @@
 				style="width: 40px; height: 11px; z-index: 11; background-color: white; position: inherit; float: right; right: 33px; font-size: 15px;">
 			</div>
 			<img src="sprites/cloud.webp"
-				style="width: 40px; z-index: 10; position: inherit; top: 16px; float: right; right: 76px; font-size: 15px;">
+				style="width: 40px; z-index: 10; position: inherit; top: 16px; float: right; right: 76px; font-size: 15px;" alt="A stylized image of a cloud" >
 			<img id="right_cloud" src="sprites/cloud.webp"
-				style="width: 50px; z-index: 10; position: inherit; top: 3px; float: right; right: 24px; font-size: 15px;">
+				style="width: 50px; z-index: 10; position: inherit; top: 3px; float: right; right: 24px; font-size: 15px;" alt="A slightly larger cloud">
 
 		</div>
 		<div id="moon_shadow"
@@ -87,13 +86,13 @@
 
 
 			<img id="mobilequality" src="sprites/spinning_fish_meme_transparent.webp"
-				style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 3px; width:140px; ">
+				style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 3px; width:140px; " alt="A graphic indicating how well the player timed their input">
 
 		</div>
 
 		<div style="width:100%;">
 
-			<img id="mobilefish" src="sprites/spinning_fish_meme_transparent.webp" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();">
+			<img id="mobilefish" src="sprites/spinning_fish_meme_transparent.webp" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();" alt="An animated meme image of a spinning fish.">
 
 
 			<h2 id='instructions' style="display: none; width: 20%;">
@@ -115,7 +114,7 @@
 
 	<br>
 	<img id="quality" src="sprites/miss.png"
-		style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 10px; width:30%; max-height: 10%; overflow: hidden;">
+		style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 10px; width:30%; max-height: 10%; overflow: hidden;" alt="An indicator of how well the player timed their input">
 	<div><br></div>
 
 	<div id="bottom_thingy"
@@ -163,7 +162,7 @@
 		</div>
 
 
-		<div id="mobilead">
+		<div id="mobilead" title="Google Ads">
 			<ins class="adsbygoogle" id="mobile_ad_data"
 				style="width:50%;height:60px;float:bottom;bottom:0px;"
 				data-ad-client="ca-pub-7824971111245419" data-ad-slot="6951862405">
