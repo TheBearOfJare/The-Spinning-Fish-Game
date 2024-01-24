@@ -27,7 +27,7 @@
 	<div id="measuring stick">
 		<img id="fish" src="sprites/spinning_fish_meme_transparent.webp"
 			style="position: absolute; display: none; width: 65%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
-			onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms - 50);">
+			onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms - 50);" alt="An animated meme of a spinning fish">
 
 		<div style="position: relative; top: 5px;">
 			<img class="img_label" src="sprites/miss.png" alt="Stylized graphic of the word 'miss'"><b>:</b> <span id="miss">0</span><br>
@@ -86,14 +86,14 @@
 			</audio>
 
 
-			<img id="mobilequality" src="sprites/spinning_fish_meme_transparent.webp"
+			<img id="mobilequality" src="sprites/good.png"
 				style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 3px; width:140px; " alt="A graphic indicating how well the player timed their input">
 
 		</div>
 
 		<div style="width:100%;">
 
-			<img id="mobilefish" src="sprites/spinning_fish_meme_transparent.webp" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();">
+			<img id="mobilefish" src="sprites/spinning_fish_meme_transparent.webp" style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;" onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms);" onclick="mobile_tap();" alt="An animated meme of a spinning fish">
 
 
 			<h2 id='instructions' style="display: none; width: 20%;">
@@ -114,7 +114,7 @@
 
 
 	<br>
-	<img id="quality" src="sprites/miss.png"
+	<img id="quality" src="sprites/good.png"
 		style="display:none; z-index: 2; position:relative; float: right; right: 0px; top: 10px; width:30%; max-height: 10%; overflow: hidden;" alt="An indicator of how well the player timed their input">
 	<div><br></div>
 
