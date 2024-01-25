@@ -230,12 +230,12 @@ register_press = function(time) {
 	}
 	if (innacuracy <= 10) {
 		quality = 'perfect'
-		pulse(10)
+		//pulse(10)
 		
 	}
 	if (innacuracy === 0){
 		quality = 'marvelous'
-		pulse(20)
+		//pulse(20)
 	}
 
 	
