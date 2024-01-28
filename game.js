@@ -261,8 +261,6 @@ register_press = function(time) {
 	if (document.getElementById('funkytown music').paused) {
 		document.getElementById('funkytown music').play();
 		setInterval(funky,((7*60*1000)+(43.07*1000)))
-	
-		
 
 	}
 }
@@ -294,7 +292,7 @@ document.onkeypress = function (e) {
 document.addEventListener('keydown', function (e) {
     //console.log('key pressed')
     if (e.key === ' ' && gamestarted === true) {
-        const time = Date.now() - timing;
+        time = Date.now() - timing;
         register_press(time);
     }
 });
@@ -302,8 +300,7 @@ document.addEventListener('keydown', function (e) {
 mobile_tap = function() {
 	
 	
-	time = Date.now()
-	time-=timing
+	time = Date.now() - timing
 
 	
 	if (window.mobileAndTabletCheck()) {
