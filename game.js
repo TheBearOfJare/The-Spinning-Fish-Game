@@ -392,20 +392,6 @@ update_stats = function () {
 loadthings = function () {
   //console.log('onload')
 
-  if (document.cookie.length === 0) {
-    setup_account();
-  } else {
-    //console.log('cookies: '+document.cookie)
-    update_stats();
-
-    if (get_cookie("darkmode") == "true") {
-      document.getElementById("dmdeco").click();
-    }
-    if (get_cookie("muted") == "true") {
-      document.getElementById("mute").click();
-    }
-  }
-
   mobile = window.mobileAndTabletCheck();
 
   /*
@@ -451,6 +437,22 @@ loadthings = function () {
 
   document.getElementById(mobileprefix + "fish").src =
     "sprites/spinning_fish_meme_transparent.webp";
+    
+  if (document.cookie.length === 0) {
+    setup_account();
+  } else {
+    //console.log('cookies: '+document.cookie)
+    update_stats();
+
+    if (get_cookie("darkmode") == "true") {
+      document.getElementById("dmdeco").click();
+    }
+    if (get_cookie("muted") == "true") {
+      document.getElementById("mute").click();
+    }
+  }
+
+  
 
   gamestarted = true;
 
