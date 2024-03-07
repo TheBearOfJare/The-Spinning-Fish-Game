@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="html">
+<html id="html" onload="document.getElementById('fish').src = 'sprites/spinning_fish_meme_transparent.webp'; document.getElementById('mobilefish').src = 'sprites/spinning_fish_meme_transparent.webp'; ">
   <script src="game.js" onload="//if (is_ios()) {adjust_for_ios()};"></script>
 
   <head>
@@ -42,7 +42,7 @@
     <div id="measuring stick">
       <img
         id="fish"
-        src="sprites/spinning_fish_meme_transparent.webp"
+        src="sprites/loading.gif"
         style="position: absolute; display: none; width: 65%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
         onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms - 50);"
         alt="An animated meme of a spinning fish"
@@ -184,7 +184,7 @@
       <div style="width:100%;">
         <img
           id="mobilefish"
-          src="sprites/spinning_fish_meme_transparent.webp"
+          src="sprites/loading.gif"
           style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;"
           onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms);"
           onclick="mobile_tap();"
