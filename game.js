@@ -436,7 +436,7 @@ loadthings = function () {
   }
 
   document.getElementById(mobileprefix + "fish").src =
-    "sprites/spinning_fish_meme_transparent.webp";
+    "sprites/spinning_fish_transparent.webp";
     
   if (document.cookie.length === 0) {
     setup_account();
