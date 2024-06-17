@@ -439,7 +439,7 @@ loadthings = function () {
 
     if (!mobile) {
       offset = document.getElementById("bottom_thingy").clientHeight
-      document.getElementById("quality").style.bottom = `${offset}px`; 
+      document.getElementById("quality").style.bottom = `${offset*2}px`; 
     }
   }
 
