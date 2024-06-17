@@ -433,6 +433,14 @@ loadthings = function () {
       x - document.getElementById("bottom_thingy").clientHeight
     }px`;
     //alert(document.getElementById('bottom_thingy').clientHeight)
+
+
+    // Align the Quality indicator on desktop to the botom of the screen above the bottom thingy
+
+    if (!mobile) {
+      offset = document.getElementById("bottom_thingy").clientHeight
+      document.getElementById("quality").style.bottom = `${offset}px`; 
+    }
   }
 
   document.getElementById(mobileprefix + "fish").src =
