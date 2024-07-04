@@ -439,8 +439,12 @@ loadthings = function () {
 
     if (!mobile) {
       offset = document.getElementById("bottom_thingy").clientHeight
-      document.getElementById("quality").style.bottom = `${offset*2}px`; 
+      document.getElementById("quality").style.bottom = `${(offset*2) + 30}px`; 
     }
+
+    // Streach the fish gif a little bit virtically to take up more space.
+
+
   }
 
   document.getElementById(mobileprefix + "fish").src =
