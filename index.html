@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="sprites/fish.ico" />
     <meta
       name="thumbnail"
-      content="sprites/spinning_fish_transparent.webp"
+      content="sprites/spinning_fish.gif"
     />
     <meta name="department" content="online gaming" />
     <meta name="audience" content="all" />
@@ -42,7 +42,7 @@
     <div id="measuring stick">
       <img
         id="fish"
-        src="sprites/spinning_fish_transparent.webp"
+        src="sprites/spinning_fish.gif"
         style="position: absolute; width: 65%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
         onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms - 50);"
         alt="An animated meme of a spinning fish"
@@ -153,7 +153,7 @@
         <button
           style="float: right; margin-top: -2px;"
           id="reset_timing"
-          onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/spinning_fish_transparent.webp'; document.getElementById('fish').src='sprites/spinning_fish_transparent.webp'; "
+          onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/spinning_fish.gif'; document.getElementById('fish').src='sprites/spinning_fish.gif'; "
         >
           Reset Timing</button
         ><br />
@@ -184,7 +184,7 @@
       <div style="width:100%;">
         <img
           id="mobilefish"
-          src="sprites/spinning_fish_transparent.webp"
+          src="sprites/spinning_fish.gif"
           style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;"
           onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms);"
           onclick="mobile_tap();"
