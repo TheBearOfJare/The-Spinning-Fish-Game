@@ -444,7 +444,7 @@ loadthings = function () {
   }
 
   document.getElementById(mobileprefix + "fish").src =
-    "sprites/spinning_fish.gif";
+    "sprites/spinning_fish_optimized.gif";
     
   if (document.cookie.length === 0) {
     setup_account();
