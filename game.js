@@ -1,5 +1,5 @@
 duration = 1.08 * 1000;
-timing = Date.now() + 200;
+timing = Date.now();
 //console.log('original: '+timing)
 
 var mobileprefix = "";
