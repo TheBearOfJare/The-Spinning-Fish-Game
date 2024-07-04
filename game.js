@@ -1,4 +1,4 @@
-duration = 1.05 * 1000;
+duration = 1.08 * 1000;
 timing = Date.now() + 200;
 //console.log('original: '+timing)
 
