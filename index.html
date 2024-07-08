@@ -49,7 +49,7 @@
         id="fish"
         src="sprites/spinning_fish_optimized.gif"
         style="position: absolute; width: 65%; height: 50%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
-        onload="ms = Date.now() - 182; console.log('theoretically better timing: '+ms); set_time(ms);"
+        onload="ms = Date.now() - 320; console.log('theoretically better timing: '+ms); set_time(ms);"
         alt="An animated meme of a spinning fish"
         fetchpriority="high"
       />
@@ -166,8 +166,8 @@
           id="timing_adjuster"
           style="float: right;"
           type="range"
-          min="-200"
-          max="200"
+          min="-60"
+          max="60"
           value="0"
           oninput="document.getElementById('timing adjustment value').innerHTML = `Timing Adjustment: ${this.value}ms`"
         /><br />
