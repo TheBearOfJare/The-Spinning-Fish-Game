@@ -24,6 +24,11 @@
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7824971111245419"
       crossorigin="anonymous"
     ></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7824971111245419"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,7 +49,7 @@
         id="fish"
         src="sprites/spinning_fish_optimized.gif"
         style="position: absolute; width: 65%; height: 50%; margin-left: 20%; overflow:hidden; z-index: 200; pointer-events: none;"
-        onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms - 140);"
+        onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms);"
         alt="An animated meme of a spinning fish"
         fetchpriority="high"
       />
@@ -153,7 +158,7 @@
         <button
           style="float: right; margin-top: -2px;"
           id="reset_timing"
-          onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/spinning_fish_optimized.gif'; document.getElementById('fish').src='sprites/spinning_fish_optimized.gif'; "
+          onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/spinning_fish_outdated.gif'; document.getElementById('fish').src='sprites/spinning_fish_outdated.gif'; document.getElementById('mobilefish').src='sprites/spinning_fish_optimized.gif'; document.getElementById('fish').src='sprites/spinning_fish_optimized.gif'; "
         >
           Reset Timing</button
         ><br />
@@ -161,8 +166,8 @@
           id="timing_adjuster"
           style="float: right;"
           type="range"
-          min="-60"
-          max="60"
+          min="-200"
+          max="200"
           value="0"
           oninput="document.getElementById('timing adjustment value').innerHTML = `Timing Adjustment: ${this.value}ms`"
         /><br />
