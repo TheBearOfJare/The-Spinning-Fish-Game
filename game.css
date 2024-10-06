@@ -7,6 +7,8 @@ html {
 	font-family: 'Josefin Sans', sans-serif;
 }
 
+
+  
 span {
 	font-size: 20px;
 }
@@ -123,6 +125,21 @@ button:hover {
 	text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
 
+#quality {
+	animation-name: fadeout;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+@keyframes fadeout {
+	from {
+	  opacity: 1;
+	  height: 30%;
+	}
+	to {
+	  opacity: 0;
+	  height: 40%;
+	}
+}
 
 /* Slider toggle modified from code from W3 schools (thankyou W3 schools!!!) */
 

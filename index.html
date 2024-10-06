@@ -158,7 +158,7 @@
         <button
           style="float: right; margin-top: -2px;"
           id="reset_timing"
-          onclick="this.blur(); window.navigator.vibrate([5]); document.getElementById('mobilefish').src='sprites/spinning_fish_outdated.gif'; document.getElementById('fish').src='sprites/spinning_fish_outdated.gif'; document.getElementById('mobilefish').src='sprites/spinning_fish_optimized.gif'; document.getElementById('fish').src='sprites/spinning_fish_optimized.gif'; "
+          onclick="location.reload();"
         >
           Reset Timing</button
         ><br />
@@ -191,7 +191,7 @@
           id="mobilefish"
           src="sprites/spinning_fish_optimized.gif"
           style="position: relative; display: none; width:90%; height:40%; overflow:hidden; margin:auto; z-index: 200;"
-          onload="ms = Date.now(); console.log('theoretically better timing: '+ms); set_time(ms - 282);"
+          onload="ms = Date.now() - 282; console.log('theoretically better timing: '+ms); set_time(ms);"
           onclick="mobile_tap();"
           alt="An animated meme of a spinning fish"
           fetchpriority="high"
@@ -211,12 +211,15 @@
     </button>
 
     <br />
+    
     <img
       id="quality"
       src="sprites/good.png"
-      style="display:none; z-index: 2; position:absolute; float: right; right: 0px; bottom: 70px; height:30%; overflow: hidden;"
+      style="display:none; z-index: 2; position:absolute; float: right; right: 0px;;bottom: 130px; height:30%; max-width: 100%; overflow: hidden;"
       alt="An indicator of how well the player timed their input"
+      onload="document.body.removeChild(this); document.body.appendChild(this);"
     />
+    
     <div><br /></div>
 
     <div
