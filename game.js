@@ -8,7 +8,7 @@ var lastpressed = 0;
 var dbid = "";
 var userdata = [];
 var playerdata;
-var xapikey = "646b64370b60fc42f4e1993a";
+var xapikey = "670602f03f82e1fce04c692f";
 
 upload_stats = function (miss, good, great, perfect, marvelous) {};
 
@@ -32,6 +32,29 @@ document.addEventListener('visibilitychange', function() {
 });
 
 */
+
+getuserdata = function () {
+  
+  var data = null;
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = false;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      userdata = JSON.parse(this.responseText);
+      console.log(userdata);
+      return this.responseText
+
+    }
+  });
+
+  xhr.open("GET", "https://spinningfishgame-b3ca.restdb.io/rest/playerdata");
+  xhr.setRequestHeader("content-type", "application/json");
+  xhr.setRequestHeader("x-apikey", xapikey);
+  xhr.setRequestHeader("cache-control", "no-cache");
+
+  xhr.send(data);
+}
 
 quicksave = function () {
   miss = parseInt(document.getElementById("miss").innerHTML);
@@ -189,6 +212,28 @@ pulse = function (intensity) {
   document.getElementById("html").style.margin = "0px";
 };
 
+send_data = function (feild, value) {
+  var data = JSON.stringify({
+    feild: value,
+  });
+  
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = false;
+  
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      console.log(this.responseText);
+    }
+  });
+  
+  xhr.open("PUT", 'https://spinningfishgame-b3ca.restdb.io/rest/playerdata?q={"id": "' + get_cookie("id") + '"}');
+  xhr.setRequestHeader("content-type", "application/json");
+  xhr.setRequestHeader("x-apikey", xapikey);
+  xhr.setRequestHeader("cache-control", "no-cache");
+  
+  xhr.send(data);
+  
+}
 save_stats = function (miss, good, great, perfect, marvelous, score) {
   document.cookie = `score=${score}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
   document.cookie = `miss=${miss}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
@@ -196,6 +241,8 @@ save_stats = function (miss, good, great, perfect, marvelous, score) {
   document.cookie = `great=${great}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
   document.cookie = `perfect=${perfect}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
   document.cookie = `marvelous=${marvelous}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
+
+  send_data("score", score);
 };
 
 register_press = function (time) {
@@ -317,11 +364,35 @@ setup_account = function () {
   document.cookie = `great=${0}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
   document.cookie = `perfect=${0}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
   document.cookie = `marvelous=${0}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
-  //create_db_entry()
+  create_db_entry()
 };
 
 create_db_entry = function () {
-  // Creates a blank new database entry for the player's save data. This will used mainly for leaderboard purposes
+  // Creates a blank new database entry for the player's save data. This will used mainly for leaderboard purposes.
+  id = userdata.length + 2;
+  document.cookie = `id=${id}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`; // Set the id
+
+  var data = JSON.stringify({
+    "ID": id,
+    "score": 0,
+  });
+  
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = false;
+  
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      console.log(this.responseText);
+    }
+  });
+  
+  xhr.open("POST", "https://spinningfishgame-b3ca.restdb.io/rest/playerdata");
+  xhr.setRequestHeader("content-type", "application/json");
+  xhr.setRequestHeader("x-apikey", xapikey);
+  xhr.setRequestHeader("cache-control", "no-cache");
+  
+  xhr.send(data);
+  
 };
 
 get_rank = function (score) {
@@ -452,6 +523,8 @@ loadthings = function () {
     
   if (document.cookie.length === 0) {
     setup_account();
+    // Refresh the window to avoid jank
+    window.location.reload();
   } else {
     //console.log('cookies: '+document.cookie)
     update_stats();
@@ -464,9 +537,12 @@ loadthings = function () {
     }
   }
 
-  
-
   gamestarted = true;
+
+  if (document.cookie.search("id")<0) {
+    create_db_entry();
+    
+  }
 
   //console.log('it worked?');
 };
