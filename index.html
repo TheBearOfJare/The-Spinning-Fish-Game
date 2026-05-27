@@ -93,7 +93,7 @@
       <div
         title="Toggle dark mode"
         id="dmdeco"
-        onclick="window.navigator.vibrate([5]); let x = document.getElementById('darkmode'); x.checked = !x.checked; togglenight(); this.blur();"
+        onclick="safe_vibrate([5]); let x = document.getElementById('darkmode'); x.checked = !x.checked; togglenight(); this.blur();"
       >
         <div
           id="cloud_cutoff"
@@ -113,7 +113,7 @@
       </div>
       <div
         id="moon_shadow"
-        onclick="window.navigator.vibrate([5]); let x = document.getElementById('darkmode'); x.checked = !x.checked; togglenight(); this.blur();"
+        onclick="safe_vibrate([5]); let x = document.getElementById('darkmode'); x.checked = !x.checked; togglenight(); this.blur();"
       >
         <br />
       </div>
@@ -125,7 +125,7 @@
         <input
           id="darkmode"
           type="checkbox"
-          onclick="window.navigator.vibrate([5]); this.blur();"
+          onclick="safe_vibrate([5]); this.blur();"
           onchange="togglenight()"
         />
 
@@ -144,14 +144,14 @@
       >
         <button
           style="float: right;"
-          onclick="window.navigator.vibrate([5]); window.location.assign('achievements.html')"
+          onclick="safe_vibrate([5]); window.location.assign('achievements.html')"
         >
           Achievements</button
         ><br />
         <button
           style="float: right; margin-top: -2px;"
           id="mute"
-          onclick="this.blur(); window.navigator.vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; document.cookie = `muted=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} else {song.muted = true; this.innerHTML = 'Unmute Audio'; document.cookie = `muted=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} "
+          onclick="this.blur(); safe_vibrate([5]); song = document.getElementById('funkytown music'); if (song.muted) {song.muted = false; this.innerHTML = 'Mute Audio'; document.cookie = `muted=false; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} else {song.muted = true; this.innerHTML = 'Unmute Audio'; document.cookie = `muted=true; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`} "
         >
           Mute Audio</button
         ><br />
@@ -190,7 +190,7 @@
         <img
           id="mobilefish"
           src="sprites/spinning_fish_optimized.gif"
-          style="position: relative; display: none; width:97%; height:50%; overflow:hidden; margin:auto; z-index: 200;"
+          style="position: relative; display: none; width:97%; max-height:35vh; object-fit:contain; overflow:hidden; margin:auto; z-index: 200;"
           onload="ms = Date.now() - 282; console.log('theoretically better timing: '+ms); set_time(ms);"
           onclick="mobile_tap();"
           alt="An animated meme of a spinning fish"
@@ -230,43 +230,14 @@
         id="hider_button"
         style="box-sizing: border-box; padding: 3px;"
         onclick="
-			
-		tmp = new Date();
-
-		tmp = tmp.getTime()
-		console.log('tmp: ',tmp)
-		while (true) {
-			x = new Date();
-			x = x.getTime();
-			console.log(x,tmp)
-			if (x > tmp + 10) {
-				document.getElementById('bottom_thingy').style.display = 'none';
-				break
-			}
-			continue
-		}
-		if (mobileprefix == 'mobile') {
-			document.getElementById('mobilefish').style.width = '100%';
-			document.getElementById('mobilefish').style.height = '50%';
-			zone = document.getElementById('mobile_tap_zone')
-			zone.style.height = `${document.getElementById('html').clientHeight - document.getElementById('measuring stick').clientHeight - 10}px`;
-			x = zone.style.height.split('')
-			x.pop()
-			x.pop()
-			x = parseInt(x.join(''))
-			zone.style.height = `${x - document.getElementById('bottom_thingy').clientHeight}px`;
-			
-		}
-		else {
-			document.getElementById('fish').style.top = '10%';
-		}
-		
-    if (!mobile) {
-      offset = document.getElementById('bottom_thingy').clientHeight
-      document.getElementById('quality').style.bottom = `${offset}px`; 
-    }
-			
-			"
+          document.getElementById('bottom_thingy').style.display = 'none';
+          if (mobileprefix == 'mobile') {
+            // Flexbox layout handles resizing automatically
+          } else {
+            document.getElementById('fish').style.top = '10%';
+            document.getElementById('quality').style.bottom = '0px';
+          }
+        "
       >
         Hide Ads
       </div>

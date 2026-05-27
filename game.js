@@ -2,6 +2,16 @@ duration = 1.08 * 1000;
 timing = Date.now();
 //console.log('original: '+timing)
 
+safe_vibrate = function (pattern) {
+  if (typeof navigator !== "undefined" && typeof navigator.vibrate === "function") {
+    try {
+      navigator.vibrate(pattern);
+    } catch (e) {
+      console.warn("Vibration failed:", e);
+    }
+  }
+};
+
 var mobileprefix = "";
 var gamestarted = false;
 var lastpressed = 0;
@@ -182,7 +192,7 @@ window.mobileAndTabletCheck = function () {
 };
 
 is_ios = function () {
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
     return true;
   } else {
     return false;
@@ -349,7 +359,7 @@ mobile_tap = function () {
 
   if (window.mobileAndTabletCheck()) {
     time -= 30;
-    window.navigator.vibrate([10]);
+    safe_vibrate([10]);
   }
 
   if (gamestarted === true) {
@@ -475,6 +485,7 @@ loadthings = function () {
 	}
 	*/
   if (mobile) {
+    document.body.classList.add("mobile-layout");
     document.getElementById("mobilefish").style.display = "block";
     document.getElementById("fish").style.display = "none";
     mobileprefix = "mobile";
@@ -490,32 +501,10 @@ loadthings = function () {
   if (mobile) {
     zone = document.getElementById("mobile_tap_zone");
     zone.style.display = "block";
-    zone.style.height = `${
-      document.getElementById("html").clientHeight -
-      document.getElementById("measuring stick").clientHeight -
-      10
-    }px`;
-    x = zone.style.height.split("");
-    x.pop();
-    x.pop();
-    x = parseInt(x.join(""));
-    //alert(x)
-    zone.style.height = `${
-      x - document.getElementById("bottom_thingy").clientHeight
-    }px`;
-    //alert(document.getElementById('bottom_thingy').clientHeight)
-
-
+  } else {
     // Align the Quality indicator on desktop to the botom of the screen above the bottom thingy
-
-    if (!mobile) {
-      offset = document.getElementById("bottom_thingy").clientHeight
-      document.getElementById("quality").style.bottom = `${(offset*2) + 30}px`; 
-    }
-
-    // Streach the fish gif a little bit virtically to take up more space.
-
-
+    offset = document.getElementById("bottom_thingy").clientHeight;
+    document.getElementById("quality").style.bottom = `${(offset * 2) + 30}px`;
   }
 
   document.getElementById(mobileprefix + "fish").src =

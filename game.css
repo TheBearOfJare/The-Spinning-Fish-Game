@@ -241,3 +241,42 @@ input:checked+.slider:before {
 	cursor: pointer;
   }
 
+/* Mobile layout rules */
+body.mobile-layout {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+body.mobile-layout #measuring\ stick {
+	flex: 0 0 auto;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+body.mobile-layout #mobile_tap_zone {
+	display: block !important;
+	flex: 1 1 auto;
+	width: 100%;
+	height: auto !important; /* override inline styles set by JS */
+	box-sizing: border-box;
+}
+
+body.mobile-layout #bottom_thingy {
+	position: relative !important;
+	bottom: auto !important;
+	left: auto !important;
+	flex: 0 0 auto;
+	width: 100%;
+}
+
+body.mobile-layout > br,
+body.mobile-layout > div:not(#measuring\ stick):not(#bottom_thingy) {
+	display: none !important;
+}
+
