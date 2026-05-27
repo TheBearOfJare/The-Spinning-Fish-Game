@@ -280,3 +280,53 @@ body.mobile-layout > div:not(#measuring\ stick):not(#bottom_thingy) {
 	display: none !important;
 }
 
+/* Achievement Toast Notification */
+.achievement-toast {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%) translateY(-100px);
+	background: rgba(18, 18, 18, 0.95);
+	color: #fff;
+	padding: 12px 24px;
+	border-radius: 12px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 10px rgba(77, 234, 124, 0.5);
+	border: 2px solid rgb(77, 234, 124);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	z-index: 9999;
+	font-family: 'Josefin Sans', sans-serif;
+	pointer-events: none;
+	opacity: 0;
+	transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
+}
+
+.achievement-toast.show {
+	transform: translateX(-50%) translateY(0);
+	opacity: 1;
+}
+
+.achievement-toast .toast-icon {
+	font-size: 28px;
+	color: rgb(77, 234, 124);
+}
+
+.achievement-toast .toast-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.achievement-toast .toast-title {
+	font-weight: bold;
+	font-size: 16px;
+	color: rgb(77, 234, 124);
+	margin-bottom: 2px;
+}
+
+.achievement-toast .toast-desc {
+	font-size: 14px;
+	color: #e0e0e0;
+}
+
+

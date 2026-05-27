@@ -167,8 +167,215 @@ funky = function () {
 	*/
 };
 
+const ACHIEVEMENTS = [
+  {
+    id: "dogooder",
+    name: "Do-gooder",
+    desc: "Get your first 100 \"good\"s",
+    points: 500,
+    check: (stats) => stats.good >= 100
+  },
+  {
+    id: "Grand",
+    name: "Grand",
+    desc: "Score your first 1000 points",
+    points: 0,
+    check: (stats) => stats.base_score >= 1000
+  },
+  {
+    id: "I guess I never miss",
+    name: "I guess I never miss",
+    desc: "Don't miss 25 times in a row",
+    points: 1000,
+    check: (stats) => stats.highest_combo >= 25
+  },
+  {
+    id: "I guess I never hit",
+    name: "I guess I never hit",
+    desc: "Miss 250 times",
+    points: 11250,
+    check: (stats) => stats.miss >= 250
+  },
+  {
+    id: "Perfectionist",
+    name: "Perfectionist",
+    desc: "Be \"perfect\" 150 times",
+    points: 5000,
+    check: (stats) => stats.perfect >= 150
+  },
+  {
+    id: "Mr/Miss Marvelous",
+    name: "Mr/Miss Marvelous",
+    desc: "Hit the frame-perfect timing 10 times",
+    points: 10000,
+    check: (stats) => stats.marvelous >= 10
+  },
+  {
+    id: "Combo Master",
+    name: "Combo Master",
+    desc: "Get your first 50 combo",
+    points: 2000,
+    check: (stats) => stats.highest_combo >= 50
+  },
+  {
+    id: "Fish Lover",
+    name: "Fish Lover",
+    desc: "Visit the game 5 times",
+    points: 300,
+    check: (stats) => stats.visits >= 5
+  },
+  {
+    id: "Persistence",
+    name: "Persistence",
+    desc: "Register 1000 total hits",
+    points: 1500,
+    check: (stats) => (stats.good + stats.great + stats.perfect + stats.marvelous) >= 1000
+  },
+  {
+    id: "Perfect Sync",
+    name: "Perfect Sync",
+    desc: "Play with a non-zero timing adjustment",
+    points: 250,
+    check: (stats) => stats.timing_adjustment !== 0
+  }
+];
+
+var current_combo = 0;
+var highest_combo = 0;
+
+get_unlocked_achievements = function() {
+  try {
+    let stored = localStorage.getItem("unlocked_achievements");
+    if (stored) return JSON.parse(stored);
+  } catch(e) {}
+  
+  let cookieVal = get_cookie("unlocked_achievements");
+  if (cookieVal) {
+    try {
+      return JSON.parse(decodeURIComponent(cookieVal));
+    } catch(e) {}
+  }
+  return [];
+};
+
+save_unlocked_achievements = function(list) {
+  try {
+    localStorage.setItem("unlocked_achievements", JSON.stringify(list));
+  } catch(e) {}
+  document.cookie = `unlocked_achievements=${encodeURIComponent(JSON.stringify(list))}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
+};
+
+get_achievement_bonus = function() {
+  let bonus = 0;
+  let unlocked = get_unlocked_achievements();
+  for (let ach of ACHIEVEMENTS) {
+    if (unlocked.includes(ach.id)) {
+      bonus += ach.points;
+    }
+  }
+  return bonus;
+};
+
+get_stats_object = function() {
+  let miss = parseInt(document.getElementById("miss").innerHTML) || 0;
+  let good = parseInt(document.getElementById("good").innerHTML) || 0;
+  let great = parseInt(document.getElementById("great").innerHTML) || 0;
+  let perfect = parseInt(document.getElementById("perfect").innerHTML) || 0;
+  let marvelous = parseInt(document.getElementById("marvelous").innerHTML) || 0;
+  
+  let base = marvelous * 1000 + perfect * 100 + great * 50 + good * 15 - miss * 45;
+  let visits = parseInt(get_cookie("visits")) || 0;
+  let timing_adjuster_el = document.getElementById("timing_adjuster");
+  let timing_adjustment = timing_adjuster_el ? parseInt(timing_adjuster_el.value) : 0;
+  
+  return {
+    miss: miss,
+    good: good,
+    great: great,
+    perfect: perfect,
+    marvelous: marvelous,
+    base_score: base,
+    visits: visits,
+    highest_combo: highest_combo,
+    timing_adjustment: timing_adjustment
+  };
+};
+
+show_achievement_toast = function(name, desc) {
+  let toast = document.createElement("div");
+  toast.className = "achievement-toast";
+  
+  let icon = document.createElement("div");
+  icon.className = "toast-icon";
+  icon.innerHTML = "🏆";
+  
+  let content = document.createElement("div");
+  content.className = "toast-content";
+  
+  let title = document.createElement("div");
+  title.className = "toast-title";
+  title.innerHTML = "Achievement Unlocked!";
+  
+  let description = document.createElement("div");
+  description.className = "toast-desc";
+  description.innerHTML = `<b>${name}</b>: ${desc}`;
+  
+  content.appendChild(title);
+  content.appendChild(description);
+  toast.appendChild(icon);
+  toast.appendChild(content);
+  
+  document.body.appendChild(toast);
+  
+  toast.offsetHeight; // force reflow
+  toast.classList.add("show");
+  
+  safe_vibrate([50, 50, 100]);
+  
+  setTimeout(function() {
+    toast.classList.remove("show");
+    setTimeout(function() {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 500);
+  }, 4000);
+};
+
+check_achievements = function(silent) {
+  let stats = get_stats_object();
+  let unlocked = get_unlocked_achievements();
+  let newlyUnlocked = false;
+  
+  for (let ach of ACHIEVEMENTS) {
+    if (!unlocked.includes(ach.id)) {
+      if (ach.check(stats)) {
+        unlocked.push(ach.id);
+        if (!silent) {
+          show_achievement_toast(ach.name, ach.desc);
+        }
+        newlyUnlocked = true;
+      }
+    }
+  }
+  
+  if (newlyUnlocked) {
+    save_unlocked_achievements(unlocked);
+    let miss = parseInt(document.getElementById("miss").innerHTML) || 0;
+    let good = parseInt(document.getElementById("good").innerHTML) || 0;
+    let great = parseInt(document.getElementById("great").innerHTML) || 0;
+    let perfect = parseInt(document.getElementById("perfect").innerHTML) || 0;
+    let marvelous = parseInt(document.getElementById("marvelous").innerHTML) || 0;
+    
+    let totalScore = calc_score(miss, good, great, perfect, marvelous);
+    document.getElementById("score").innerHTML = String(totalScore);
+    quicksave();
+  }
+};
+
 calc_score = function (miss, good, great, perfect, marvelous) {
-  return marvelous * 1000 + perfect * 100 + great * 50 + good * 15 - miss * 45;
+  let base = marvelous * 1000 + perfect * 100 + great * 50 + good * 15 - miss * 45;
+  return base + get_achievement_bonus();
 };
 update_visits = function () {
   //console.log('updating visits')
@@ -339,7 +546,20 @@ register_press = function (time) {
   document.getElementById("score").innerHTML = String(
     calc_score(miss, good, great, perfect, marvelous)
   );
+
+  // Combo tracking
+  if (quality !== "miss") {
+    current_combo++;
+    if (current_combo > highest_combo) {
+      highest_combo = current_combo;
+      document.cookie = `highest_combo=${highest_combo}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
+    }
+  } else {
+    current_combo = 0;
+  }
+
   quicksave();
+  check_achievements();
   //console.log(innacuracy)
 
   if (document.getElementById("funkytown music").paused) {
@@ -399,6 +619,8 @@ setup_account = function () {
   document.cookie = `great=${0}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
   document.cookie = `perfect=${0}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
   document.cookie = `marvelous=${0}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
+  document.cookie = `highest_combo=${0}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
+  save_unlocked_achievements([]);
   create_db_entry()
 };
 
@@ -583,14 +805,22 @@ loadthings = function () {
       document.getElementById("timing_adjuster").value = savedAdjustment;
       document.getElementById("timing adjustment value").innerHTML = `Timing Adjustment: ${savedAdjustment}ms`;
     }
+    highest_combo = parseInt(get_cookie("highest_combo")) || 0;
   }
 
   gamestarted = true;
 
   if (document.cookie.search("id")<0) {
     create_db_entry();
-    
   }
 
-  //console.log('it worked?');
+  // Update score with achievement bonuses on load
+  let miss = parseInt(document.getElementById("miss").innerHTML) || 0;
+  let good = parseInt(document.getElementById("good").innerHTML) || 0;
+  let great = parseInt(document.getElementById("great").innerHTML) || 0;
+  let perfect = parseInt(document.getElementById("perfect").innerHTML) || 0;
+  let marvelous = parseInt(document.getElementById("marvelous").innerHTML) || 0;
+  document.getElementById("score").innerHTML = String(calc_score(miss, good, great, perfect, marvelous));
+  
+  check_achievements(true); // silent check on load
 };

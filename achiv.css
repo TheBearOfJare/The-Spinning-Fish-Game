@@ -1,10 +1,334 @@
-html {
-	height: 100%;
-	width: 100%;
+/* Design System Variables */
+:root {
+	--bg-color: #fffff5;
+	--text-color: #111111;
+	--panel-bg: #ffffff;
+	--card-bg: #f4f4eb;
+	--border-color: #000000;
+	--accent-color: rgb(77, 234, 124);
+	--accent-hover: rgb(78, 202, 115);
+	--glow-color: rgba(77, 234, 124, 0.4);
+	--progress-bg: #e0e0d5;
+	--shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-.achievement {
+.darkmode {
+	--bg-color: #333333;
+	--text-color: #ffffff;
+	--panel-bg: #1a1a1a;
+	--card-bg: #2a2a2a;
+	--border-color: #ffffff;
+	--accent-color: rgb(77, 234, 124);
+	--accent-hover: rgb(78, 202, 115);
+	--glow-color: rgba(77, 234, 124, 0.6);
+	--progress-bg: #444444;
+	--shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Base resets */
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-family: 'Josefin Sans', sans-serif;
+	transition: background-color 0.8s, color 0.8s;
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 40px 20px;
+	box-sizing: border-box;
+}
+
+/* Header styles */
+.header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+h1 {
+	font-size: 3rem;
+	margin: 0;
+	font-weight: 700;
+	text-shadow: 2px 2px 0px var(--shadow-color);
+}
+
+h2 {
+	font-size: 1.8rem;
+	margin: 0;
+	font-weight: 600;
+}
+
+/* Back button */
+.back-button {
+	color: black;
+	width: 160px;
+	height: 45px;
+	background-color: var(--accent-color);
+	border: 3px dotted black;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 6px;
+	transition: width 0.3s, background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+	background-color: var(--accent-hover);
+	color: white;
+	width: 180px;
+	transform: scale(1.05);
+}
+
+/* Stats Panel */
+.stats-panel {
+	background-color: var(--panel-bg);
+	border: 3px solid var(--border-color);
+	border-radius: 16px;
+	padding: 20px;
+	margin-bottom: 40px;
+	box-shadow: 0 8px 24px var(--shadow-color);
+	transition: background-color 0.8s, border-color 0.8s;
+}
+
+.stats-panel h3 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 1.3rem;
+	border-bottom: 2px solid var(--accent-color);
+	display: inline-block;
+	padding-bottom: 4px;
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 16px;
+}
+
+.stat-card {
+	background-color: var(--card-bg);
+	border: 2px solid var(--border-color);
+	border-radius: 12px;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: transform 0.2s, background-color 0.8s, border-color 0.8s;
+}
+
+.stat-card:hover {
+	transform: translateY(-3px);
+}
+
+.stat-label {
+	font-size: 14px;
+	color: var(--text-color);
+	opacity: 0.7;
+	margin-bottom: 5px;
+}
+
+.stat-value {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* Sections */
+.section-title {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	border-bottom: 2px dashed var(--border-color);
+	padding-bottom: 8px;
+}
+
+.badge-count {
+	background-color: var(--accent-color);
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 2px 10px;
+	border-radius: 20px;
+	border: 1px solid black;
+}
+
+/* Achievements Grid */
+.achievements-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+}
+
+.empty-state {
+	grid-column: 1 / -1;
+	text-align: center;
+	opacity: 0.6;
+	padding: 20px;
+	font-style: italic;
+}
+
+/* Achievement Card */
+.achievement-card {
+	background-color: var(--panel-bg);
+	border: 3px solid var(--border-color);
+	border-radius: 16px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 4px 12px var(--shadow-color);
+	transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.achievement-card:hover {
+	transform: translateY(-5px) scale(1.02);
+	box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+/* Completed Card Variant */
+.achievement-card.completed {
+	border-color: var(--accent-color);
+	box-shadow: 0 4px 15px var(--glow-color);
+}
+
+.achievement-card.completed:hover {
+	box-shadow: 0 8px 25px var(--glow-color);
+}
+
+.achievement-card .card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 8px;
+}
+
+.achievement-card .ach-title {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.achievement-card .ach-reward {
+	font-size: 12px;
+	color: var(--accent-hover);
+	font-weight: bold;
+	text-align: right;
+}
+
+.achievement-card .ach-desc {
+	font-size: 14px;
+	opacity: 0.8;
+	margin-bottom: 16px;
+	flex-grow: 1;
+}
+
+/* Progress bar */
+.progress-container {
+	margin-top: auto;
+}
+
+.progress-label {
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	margin-bottom: 4px;
+	opacity: 0.8;
+}
+
+.progress-bar-bg {
+	height: 8px;
+	background-color: var(--progress-bg);
+	border-radius: 4px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.progress-bar-fill {
+	height: 100%;
+	background: linear-gradient(90deg, #4dea7c, #2ecc71);
+	border-radius: 4px;
+	transition: width 0.5s ease-out;
+}
+
+/* Badge/Image float */
+.badge-img {
 	height: 40px;
-	border: 3px solid green;
-	background-color: blue;
+	width: auto;
+	object-fit: contain;
+}
+
+.checkmark-icon {
+	color: var(--accent-color);
+	font-size: 24px;
+	line-height: 1;
+}
+
+/* Mystery styling */
+.mystery-panel {
+	background-color: var(--panel-bg);
+	border: 3px solid var(--border-color);
+	border-radius: 16px;
+	padding: 24px;
+	box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.highlight {
+	color: var(--accent-color);
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.info-button {
+	color: black;
+	background-color: var(--accent-color);
+	border: 2px dotted black;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 4px 12px;
+	cursor: pointer;
+	border-radius: 4px;
+	margin-left: 10px;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.info-button:hover {
+	background-color: var(--accent-hover);
+	color: white;
+}
+
+.mystery-explanation {
+	margin-top: 15px;
+	padding: 10px 15px;
+	background-color: var(--card-bg);
+	border-left: 4px solid var(--accent-color);
+	border-radius: 0 8px 8px 0;
+	font-size: 14px;
+	opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+	.header-row {
+		flex-direction: column;
+		gap: 15px;
+		align-items: flex-start;
+	}
+	h1 {
+		font-size: 2.2rem;
+	}
+	.back-button {
+		width: 100%;
+	}
+	.back-button:hover {
+		width: 100%;
+	}
 }

@@ -3,69 +3,77 @@
 	
 <head>
   	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width">
-  	<title>Achievments - The Spinning Fish Game</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Achievements - The Spinning Fish Game</title>
   	<link href="achiv.css" rel="stylesheet" type="text/css" />
 	<link rel="icon" type="image/x-icon" href="sprites/fish.ico">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
 </head>
 
-	<body>
-		<h1>
-			Achievements
-		</h1>
-		<p>
-			Currently in beta. More Coming Soon!
-		</p>
-		<h2>
-			Completed:
-		</h2>
-		<div class="achievement" id="dogooder" style="display: none;">
-			<b>Do-gooder:</b> Get your first 100 "good's" <span style="float: right; margin-right: 10px;">500 points</span>
-		</div>
-
-		<div class="achievement" id="Grand" style="display: none;">
-			<b>Grand:</b> Score your first 1000 points <img src="sprites/grand_img.png" style="float: right; margin-right: 10px; height:40px;">
-		</div>
-
-		<div class="achievement" id="I guess I never miss" style="display: none;">
-			<b>I guess I never miss:</b> Don't miss 25 times in a row <span style="float: right; margin-right: 10px;">1000 points</span>
-		</div>
-
-		<div class="achievement" id="I guess I never hit" style="display: none;">
-			<b>I guess I never hit:</b> Miss 250 times <span style="float: right; margin-right: 10px;">11250 points (refunds all points lost due to missing)</span>
-		</div>
-
-		<div class="achievement" id="Perfectionist" style="display: none;">
-			<b>Perfectionist:</b> Be "perfect" 150 times <span style="float: right; margin-right: 10px;">5000 points</span>
-		</div>
-		
-		<div class="achievement" id="Mr/Miss Marvelous" style="display: none;">
-			<b>Mr/Miss Marvelous:</b> Hit the frame-perfect timing 10 times <span style="float: right; margin-right: 10px;">10000 points</span>
-		</div>
-		
-		<h2>
-			In Progress:
-		</h2>
-	
-		<h2>
-			Mystery:
-		</h2>
-		<div id="mystery_achievements">
-			There are <span id="undiscovered_acheivement_number">0</span> mystery acheivements left for you to discover. <button id="toggle_mystery" onclick="show_mystery_explanation();">Learn more</button>
-
-			<div id="mystery_explanation" style="display: none;">
-				<br>
-				Mystery Achievements won't be revealed until you progress in them. Some of them are easter eggs, while others will be revealed when you complete other acheivements.
+	<body class="lightmode" id="body">
+		<div class="container">
+			<div class="header-row">
+				<h1>Achievements</h1>
+				<button class="back-button" onclick="window.location.assign('index.html')">Go Back to Game</button>
 			</div>
-		
-			<!-- I guess you just hate surprises :( -->
+			
+			<!-- Profile / Stats Summary -->
+			<div class="stats-panel">
+				<h3>Your Stats</h3>
+				<div class="stats-grid">
+					<div class="stat-card">
+						<span class="stat-label">Total Score</span>
+						<span class="stat-value" id="stats_score">0</span>
+					</div>
+					<div class="stat-card">
+						<span class="stat-label">Highest Combo</span>
+						<span class="stat-value" id="stats_combo">0</span>
+					</div>
+					<div class="stat-card">
+						<span class="stat-label">Hits (G/Gr/P/M)</span>
+						<span class="stat-value" id="stats_hits">0 / 0 / 0 / 0</span>
+					</div>
+					<div class="stat-card">
+						<span class="stat-label">Misses</span>
+						<span class="stat-value" id="stats_misses">0</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="section-title">
+				<h2>Completed</h2>
+				<span class="badge-count" id="completed_count">0</span>
+			</div>
+			<div id="completed_container" class="achievements-grid">
+				<p class="empty-state">No achievements completed yet. Keep spinning!</p>
+			</div>
+
+			<div class="section-title">
+				<h2>In Progress</h2>
+				<span class="badge-count" id="in_progress_count">0</span>
+			</div>
+			<div id="in_progress_container" class="achievements-grid">
+				<p class="empty-state">No achievements in progress.</p>
+			</div>
+
+			<div class="section-title">
+				<h2>Mystery Achievements</h2>
+			</div>
+			<div class="mystery-panel">
+				<div id="mystery_achievements">
+					There are <span id="undiscovered_acheivement_number" class="highlight">0</span> mystery achievements left for you to discover.
+					<button id="toggle_mystery" class="info-button" onclick="show_mystery_explanation();">Learn more</button>
+
+					<div id="mystery_explanation" class="mystery-explanation">
+						<p>Mystery Achievements won't be revealed until you progress in them. Some of them are easter eggs, while others will be revealed when you complete other achievements.</p>
+					</div>
+				</div>
+			</div>
 		</div>
-		<br>
-	
-		<button style="position: sticky; top: 5; right: 5;" onclick="window.location.assign('index.html')">Go back to the game</button>
 		
+		<script src="achiv.js"></script>
 	</body>
-	
-	<script src="achiv.js"></script>
 	
 </html>
