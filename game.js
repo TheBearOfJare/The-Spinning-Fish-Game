@@ -2,6 +2,27 @@ duration = 1.08 * 1000;
 timing = Date.now();
 //console.log('original: '+timing)
 
+var fishBlob = null;
+var fishObjectURL = null;
+
+// Start prefetching the fish GIF immediately in the background
+fetch("sprites/spinning_fish_optimized.gif")
+  .then(response => {
+    if (!response.ok) throw new Error("Network response was not ok");
+    return response.blob();
+  })
+  .then(blob => {
+    fishBlob = blob;
+    console.log("Fish GIF preloaded successfully as Blob.");
+    // If loadthings has already run and setup is waiting, initialize it
+    if (gamestarted && !fishObjectURL) {
+      initFishGif();
+    }
+  })
+  .catch(err => {
+    console.warn("Failed to preload fish GIF via fetch (could be CORS on file://). Fallback will be used.", err);
+  });
+
 safe_vibrate = function (pattern) {
   if (typeof navigator !== "undefined" && typeof navigator.vibrate === "function") {
     try {
@@ -116,6 +137,10 @@ set_time = function (ms) {
     timing += 20;
   }
   //console.log('new: ' + timing)
+};
+
+save_timing_adjustment = function (val) {
+  document.cookie = `timing_adjustment=${val}; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;`;
 };
 
 function get_cookie(name) {
@@ -470,6 +495,36 @@ update_stats = function () {
   //document.getElementById('rank').innerHTML = get_rank(score)
 };
 
+initFishGif = function () {
+  const fishEl = document.getElementById(mobileprefix + "fish");
+  if (!fishEl) return;
+
+  if (fishBlob) {
+    if (fishObjectURL) {
+      URL.revokeObjectURL(fishObjectURL);
+    }
+    fishObjectURL = URL.createObjectURL(fishBlob);
+    
+    fishEl.onload = function() {
+      // Once the blob URL loads, set the start time of the GIF
+      // Blob URL loads almost instantly (0-2ms delay), so we use 320ms offset.
+      set_time(Date.now() - 320);
+      console.log("Fish animation initialized via Blob URL.");
+      fishEl.onload = null; // Clean up
+    };
+    fishEl.src = fishObjectURL;
+  } else {
+    // Fallback: use direct URL (e.g. if fetch failed)
+    fishEl.onload = function() {
+      const offset = (mobileprefix === "mobile") ? 282 : 320;
+      set_time(Date.now() - offset);
+      console.log("Fish animation initialized via fallback URL.");
+      fishEl.onload = null;
+    };
+    fishEl.src = "sprites/spinning_fish_optimized.gif";
+  }
+};
+
 loadthings = function () {
   //console.log('onload')
 
@@ -507,8 +562,7 @@ loadthings = function () {
     document.getElementById("quality").style.bottom = `${(offset * 2) + 30}px`;
   }
 
-  document.getElementById(mobileprefix + "fish").src =
-    "sprites/spinning_fish_optimized.gif";
+  initFishGif();
     
   if (document.cookie.length === 0) {
     setup_account();
@@ -523,6 +577,11 @@ loadthings = function () {
     }
     if (get_cookie("muted") == "true") {
       document.getElementById("mute").click();
+    }
+    const savedAdjustment = get_cookie("timing_adjustment");
+    if (savedAdjustment !== undefined) {
+      document.getElementById("timing_adjuster").value = savedAdjustment;
+      document.getElementById("timing adjustment value").innerHTML = `Timing Adjustment: ${savedAdjustment}ms`;
     }
   }
 
