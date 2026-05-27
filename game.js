@@ -33,6 +33,14 @@ safe_vibrate = function (pattern) {
   }
 };
 
+inIframe = function () {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+};
+
 var mobileprefix = "";
 var gamestarted = false;
 var lastpressed = 0;
@@ -773,6 +781,17 @@ initFishGif = function () {
 
 loadthings = function () {
   //console.log('onload')
+
+  if (inIframe()) {
+    let mobileAd = document.getElementById("mobilead");
+    if (mobileAd) {
+      mobileAd.remove();
+    }
+    let hiderButton = document.getElementById("hider_button");
+    if (hiderButton) {
+      hiderButton.style.display = "none";
+    }
+  }
 
   mobile = window.mobileAndTabletCheck();
 

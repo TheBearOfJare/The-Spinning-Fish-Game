@@ -19,16 +19,15 @@
       name="description"
       content="Play the spinning fish game - a fun rythm game where you click or press the space bar in time with the rotation of a fish onscreen. Score points, unlock achievements, and climb the leaderboard in this simple but addicting game inspired by the hit youtube video."
     />
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7824971111245419"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7824971111245419"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+      if (window.self === window.top) {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7824971111245419";
+        script.crossOrigin = "anonymous";
+        document.head.appendChild(script);
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -287,9 +286,11 @@
 		-->
     </div>
 
-    <script async>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      (adsbygoogle = window.adsbygoogle || []).push({});
+    <script>
+      if (window.self === window.top) {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }
     </script>
   </body>
 </html>
