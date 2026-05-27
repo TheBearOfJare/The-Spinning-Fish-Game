@@ -87,7 +87,7 @@
       <span
         id="version"
         style="position: absolute; z-index: 12; top: 5px; float: right; right: 10px; font-size: 15px;"
-        >Beta Version 0.9.8.7</span
+        >Version 1.1</span
       >
       <div
         title="Toggle dark mode"
@@ -213,7 +213,6 @@
     <img
       id="quality"
       src="sprites/good.png"
-      style="display:none; z-index: 2; position:absolute; float: right; right: 0px;;bottom: 130px; height:30%; max-width: 100%; overflow: hidden;"
       alt="An indicator of how well the player timed their input"
       onload="document.body.removeChild(this); document.body.appendChild(this);"
     />
@@ -233,7 +232,8 @@
             // Flexbox layout handles resizing automatically
           } else {
             document.getElementById('fish').style.top = '10%';
-            document.getElementById('quality').style.bottom = '0px';
+            document.getElementById('quality').style.bottom = '15px';
+            adjustQualitySize();
           }
         "
       >

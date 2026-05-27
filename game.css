@@ -126,6 +126,14 @@ button:hover {
 }
 
 #quality {
+	display: none;
+	z-index: 2;
+	position: absolute;
+	right: 20px;
+	bottom: 130px;
+	height: 65px;
+	max-width: 100%;
+	overflow: hidden;
 	animation-name: fadeout;
 	animation-duration: 1s;
 	animation-fill-mode: forwards;
@@ -133,11 +141,11 @@ button:hover {
 @keyframes fadeout {
 	from {
 	  opacity: 1;
-	  height: 30%;
+	  transform: translateY(0);
 	}
 	to {
 	  opacity: 0;
-	  height: 40%;
+	  transform: translateY(-20px);
 	}
 }
 

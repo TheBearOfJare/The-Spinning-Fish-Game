@@ -296,9 +296,11 @@ render_achievements = function() {
 // Sync dark/light theme on load
 let darkModeCookie = get_cookie("darkmode");
 if (darkModeCookie === "true") {
+  document.documentElement.classList.add("darkmode");
   document.body.classList.add("darkmode");
   document.body.classList.remove("lightmode");
 } else {
+  document.documentElement.classList.remove("darkmode");
   document.body.classList.remove("darkmode");
   document.body.classList.add("lightmode");
 }

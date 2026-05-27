@@ -717,6 +717,28 @@ update_stats = function () {
   //document.getElementById('rank').innerHTML = get_rank(score)
 };
 
+adjustQualitySize = function() {
+  if (mobileprefix === "mobile") return;
+  let qualityEl = document.getElementById("quality");
+  let fishEl = document.getElementById("fish");
+  let bottomThingy = document.getElementById("bottom_thingy");
+  
+  if (!qualityEl || !fishEl) return;
+  
+  let fishRect = fishEl.getBoundingClientRect();
+  let bottomThingyVisible = bottomThingy && bottomThingy.style.display !== "none";
+  let bottomLimit = bottomThingyVisible ? bottomThingy.getBoundingClientRect().top : window.innerHeight;
+  
+  // Available height between fish bottom and bottom panel/viewport bottom
+  let availableHeight = bottomLimit - fishRect.bottom;
+  
+  // Use a padding of 15px top and 15px bottom to keep it neat
+  let targetHeight = availableHeight - 30;
+  if (targetHeight > 0) {
+    qualityEl.style.height = `${targetHeight}px`;
+  }
+};
+
 initFishGif = function () {
   const fishEl = document.getElementById(mobileprefix + "fish");
   if (!fishEl) return;
@@ -733,6 +755,7 @@ initFishGif = function () {
       set_time(Date.now() - 320);
       console.log("Fish animation initialized via Blob URL.");
       fishEl.onload = null; // Clean up
+      adjustQualitySize();
     };
     fishEl.src = fishObjectURL;
   } else {
@@ -742,6 +765,7 @@ initFishGif = function () {
       set_time(Date.now() - offset);
       console.log("Fish animation initialized via fallback URL.");
       fishEl.onload = null;
+      adjustQualitySize();
     };
     fishEl.src = "sprites/spinning_fish_optimized.gif";
   }
@@ -781,7 +805,8 @@ loadthings = function () {
   } else {
     // Align the Quality indicator on desktop to the botom of the screen above the bottom thingy
     offset = document.getElementById("bottom_thingy").clientHeight;
-    document.getElementById("quality").style.bottom = `${(offset * 2) + 30}px`;
+    document.getElementById("quality").style.bottom = `${offset + 15}px`;
+    adjustQualitySize();
   }
 
   initFishGif();
@@ -823,4 +848,16 @@ loadthings = function () {
   document.getElementById("score").innerHTML = String(calc_score(miss, good, great, perfect, marvelous));
   
   check_achievements(true); // silent check on load
+
+  window.addEventListener("resize", function() {
+    if (mobileprefix !== "mobile") {
+      let bottomThingy = document.getElementById("bottom_thingy");
+      if (bottomThingy) {
+        let offset = bottomThingy.clientHeight;
+        let bottomThingyVisible = bottomThingy.style.display !== "none";
+        document.getElementById("quality").style.bottom = `${bottomThingyVisible ? (offset + 15) : 15}px`;
+      }
+      adjustQualitySize();
+    }
+  });
 };
